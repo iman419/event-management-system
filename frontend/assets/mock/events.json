@@ -1,0 +1,26 @@
+[
+  {
+    "id": 1,
+    "title": "Sarajevo Tech Summit",
+    "category": "Tech",
+    "venue": "Main Hall",
+    "starts_at": "2025-11-05T10:00:00",
+    "description": "A conference about emerging technologies."
+  },
+  {
+    "id": 2,
+    "title": "Mostar Jazz Night",
+    "category": "Music",
+    "venue": "Riverside Arena",
+    "starts_at": "2025-10-30T20:00:00",
+    "description": "Live performances by regional jazz artists."
+  },
+  {
+    "id": 3,
+    "title": "Winter Sports Expo",
+    "category": "Sports",
+    "venue": "Main Hall",
+    "starts_at": "2025-12-12T09:00:00",
+    "description": "All about winter sports equipment and events."
+  }
+]
