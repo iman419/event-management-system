@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>EMS — Event Management System</title>
+
+  
+  <link href="https://cdn.jsdelivr.net/npm/bootswatch@5.3.3/dist/lux/bootstrap.min.css" rel="stylesheet">
+ 
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.13.8/css/dataTables.bootstrap5.min.css">
+  
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+  
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  
+  <link rel="stylesheet" href="./css/main.css">
+  
+  <link rel="stylesheet" href="./css/spapp.css">
+</head>
+<body>
+ 
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark border-bottom sticky-top">
+    <div class="container">
+      <a class="navbar-brand fw-bold d-flex align-items-center gap-2" href="#view_home">
+        
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <defs>
+            <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0" stop-color="#8b5cf6"/>
+              <stop offset="1" stop-color="#22d3ee"/>
+            </linearGradient>
+          </defs>
+          <circle cx="12" cy="12" r="10" fill="url(#g)"/>
+          <path d="M8 12h8M12 8v8" stroke="white" stroke-width="1.6" stroke-linecap="round"/>
+        </svg>
+        EMS
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarEMS">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarEMS">
+        <ul class="navbar-nav me-auto">
+          <li class="nav-item"><a class="nav-link" href="#view_home">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="#view_events">Events</a></li>
+          <li class="nav-item"><a class="nav-link" href="#view_venues">Venues</a></li>
+          <li class="nav-item"><a class="nav-link" href="#view_tickets">Tickets</a></li>
+          <li class="nav-item"><a class="nav-link" href="#view_profile">Profile</a></li>
+          
+        </ul>
+        <div class="d-flex gap-2">
+          <a class="btn btn-outline-light btn-sm" href="#view_login">Login</a>
+          <a class="btn btn-primary btn-sm glow" href="#view_register">Register</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  
+  <header class="container mt-4">
+    <div class="hero">
+      <div class="row align-items-center g-4">
+        <div class="col-lg-7">
+          <span class="brand-pill mb-2">EMS • Event Management System</span>
+          <h1 class="display-5 fw-bold mt-2 mb-3">The all-in-one event management app</h1>
+          <p class="lead mb-4">
+            Planiraj agendu, upravljaj lokacijama, prodaj karte i informiši posjetioce —
+            sve u jednoj responzivnoj <strong>SPA</strong> web aplikaciji (bez reload-a).
+          </p>
+
+          <div class="row text-secondary small g-3 mb-3">
+            <div class="col-12 col-sm-6 d-flex align-items-center gap-2">
+              <i class="bi bi-calendar2-event text-light"></i> Agenda i sesije
+            </div>
+            <div class="col-12 col-sm-6 d-flex align-items-center gap-2">
+              <i class="bi bi-geo-alt text-light"></i> Lokacije i kapaciteti
+            </div>
+            <div class="col-12 col-sm-6 d-flex align-items-center gap-2">
+              <i class="bi bi-ticket-perforated text-light"></i> Tipovi karata i cijene
+            </div>
+            <div class="col-12 col-sm-6 d-flex align-items-center gap-2">
+              <i class="bi bi-people text-light"></i> Korisnici i uloge (RBAC)
+            </div>
+          </div>
+
+          <div class="d-flex flex-wrap gap-2">
+            <a href="#view_events" class="btn btn-primary btn-lg">Pogledaj događaje</a>
+            <a href="#view_admin" class="btn btn-outline-light btn-lg">Admin panel</a>
+          </div>
+        </div>
+
+        
+        <div class="col-lg-5">
+          <div class="card card-hover p-4">
+            <div class="d-flex align-items-center gap-3">
+              <div class="rounded-circle d-inline-flex align-items-center justify-content-center"
+                   style="width:72px;height:72px;background:linear-gradient(135deg,#8b5cf6, #22d3ee);">
+                <i class="bi bi-stars fs-2 text-white"></i>
+              </div>
+              <div>
+                <h3 class="h5 mb-1">Make your event stand out</h3>
+                <p class="mb-2 text-secondary">Kreiraj jedinstven vizualni identitet - odaberi boje, logo i temu koji će tvoj događaj učiniti nezaboravnim!</p>
+                <div class="d-flex gap-2">
+                  <span class="badge bg-primary">Responsive</span>
+                  <span class="badge bg-secondary">SPA</span>
+                  <span class="badge bg-light text-dark">Bootstrap 5</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </header>
+
+  <main id="spapp" class="container my-5">
+    
+    <section id="view_home" data-load="views/home.html"></section>
+    <section id="view_events" data-load="views/events.html"></section>
+    <section id="view_event" data-load="views/event-details.html"></section>
+    <section id="view_venues" data-load="views/venues.html"></section>
+    <section id="view_tickets" data-load="views/tickets.html"></section>
+    <section id="view_profile" data-load="views/profile.html"></section>
+    <section id="view_admin" data-load="views/admin.html"></section>
+    <section id="view_login" data-load="views/login.html"></section>
+    <section id="view_register" data-load="views/register.html"></section>
+    <section id="error_404" data-load="views/not-found.html"></section>
+  </main>
+
+  <footer class="border-top py-4">
+    <div class="container text-center text-muted">
+      <small>© <span id="year"></span> Iman H. — Event Management System</small>
+    </div>
+  </footer>
+  <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+
+  
+  <script src="./js/jquery.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://code.highcharts.com/highcharts.js"></script>
+  <script src="https://cdn.datatables.net/1.13.8/js/jquery.dataTables.min.js"></script>
+  <script src="https://cdn.datatables.net/1.13.8/js/dataTables.bootstrap5.min.js"></script>
+
+  
+  <script src="./js/jquery.spapp.min.js"></script>
+
+ 
+  <script src="./js/app.js"></script>
+</body>
+</html>
