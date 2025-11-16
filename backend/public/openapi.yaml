@@ -1,0 +1,705 @@
+openapi: 3.0.3
+info:
+  title: Event Management System API
+  version: "1.0.0"
+  description: |
+    OpenAPI documentation for the EMS backend.
+    Includes CRUD endpoints for users, venues, events, ticket types, orders, and order items.
+servers:
+  - url: http://localhost/imanweb/backend/public/index.php
+
+paths:
+  /users:
+    get:
+      summary: List all users
+      tags: [Users]
+      responses:
+        "200":
+          description: List of users
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/User'
+    post:
+      summary: Create a new user
+      tags: [Users]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserInput'
+      responses:
+        "201":
+          description: Created user ID
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: integer
+
+  /users/{id}:
+    get:
+      summary: Get user by ID
+      tags: [Users]
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema: { type: integer }
+      responses:
+        "200":
+          description: User found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        "404":
+          description: User not found
+    put:
+      summary: Update user by ID
+      tags: [Users]
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema: { type: integer }
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserInput'
+      responses:
+        "200":
+          description: User updated
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  updated:
+                    type: boolean
+    delete:
+      summary: Delete user by ID
+      tags: [Users]
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema: { type: integer }
+      responses:
+        "200":
+          description: User deleted
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  deleted:
+                    type: boolean
+
+  /venues:
+    get:
+      summary: List all venues
+      tags: [Venues]
+      responses:
+        "200":
+          description: List of venues
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Venue'
+    post:
+      summary: Create a new venue
+      tags: [Venues]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/VenueInput'
+      responses:
+        "201":
+          description: Created venue ID
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: integer
+
+  /venues/{id}:
+    get:
+      summary: Get venue by ID
+      tags: [Venues]
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema: { type: integer }
+      responses:
+        "200":
+          description: Venue found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Venue'
+        "404":
+          description: Venue not found
+    put:
+      summary: Update venue by ID
+      tags: [Venues]
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema: { type: integer }
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/VenueInput'
+      responses:
+        "200":
+          description: Venue updated
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  updated:
+                    type: boolean
+    delete:
+      summary: Delete venue by ID
+      tags: [Venues]
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema: { type: integer }
+      responses:
+        "200":
+          description: Venue deleted
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  deleted:
+                    type: boolean
+
+  /events:
+    get:
+      summary: List all events
+      tags: [Events]
+      responses:
+        "200":
+          description: List of events
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Event'
+    post:
+      summary: Create a new event
+      tags: [Events]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EventInput'
+      responses:
+        "201":
+          description: Created event ID
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: integer
+
+  /events/{id}:
+    get:
+      summary: Get event by ID
+      tags: [Events]
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema: { type: integer }
+      responses:
+        "200":
+          description: Event found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Event'
+        "404":
+          description: Event not found
+    put:
+      summary: Update event by ID
+      tags: [Events]
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema: { type: integer }
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EventInput'
+      responses:
+        "200":
+          description: Event updated
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  updated:
+                    type: boolean
+    delete:
+      summary: Delete event by ID
+      tags: [Events]
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema: { type: integer }
+      responses:
+        "200":
+          description: Event deleted
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  deleted:
+                    type: boolean
+
+  /ticket-types:
+    get:
+      summary: List all ticket types
+      tags: [TicketTypes]
+      responses:
+        "200":
+          description: List of ticket types
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/TicketType'
+    post:
+      summary: Create a new ticket type
+      tags: [TicketTypes]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TicketTypeInput'
+      responses:
+        "201":
+          description: Created ticket type ID
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: integer
+
+  /ticket-types/{id}:
+    get:
+      summary: Get ticket type by ID
+      tags: [TicketTypes]
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema: { type: integer }
+      responses:
+        "200":
+          description: Ticket type found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TicketType'
+        "404":
+          description: Ticket type not found
+    put:
+      summary: Update ticket type by ID
+      tags: [TicketTypes]
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema: { type: integer }
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TicketTypeInput'
+      responses:
+        "200":
+          description: Ticket type updated
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  updated:
+                    type: boolean
+    delete:
+      summary: Delete ticket type by ID
+      tags: [TicketTypes]
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema: { type: integer }
+      responses:
+        "200":
+          description: Ticket type deleted
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  deleted:
+                    type: boolean
+
+  /orders:
+    get:
+      summary: List all orders
+      tags: [Orders]
+      responses:
+        "200":
+          description: List of orders
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Order'
+    post:
+      summary: Create a new order
+      tags: [Orders]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/OrderInput'
+      responses:
+        "201":
+          description: Created order ID
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: integer
+
+  /orders/{id}:
+    get:
+      summary: Get order by ID
+      tags: [Orders]
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema: { type: integer }
+      responses:
+        "200":
+          description: Order found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Order'
+        "404":
+          description: Order not found
+    put:
+      summary: Update order by ID
+      tags: [Orders]
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema: { type: integer }
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/OrderInput'
+      responses:
+        "200":
+          description: Order updated
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  updated:
+                    type: boolean
+    delete:
+      summary: Delete order by ID
+      tags: [Orders]
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema: { type: integer }
+      responses:
+        "200":
+          description: Order deleted
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  deleted:
+                    type: boolean
+
+  /order-items:
+    get:
+      summary: List all order items
+      tags: [OrderItems]
+      responses:
+        "200":
+          description: List of order items
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/OrderItem'
+    post:
+      summary: Create a new order item
+      tags: [OrderItems]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/OrderItemInput'
+      responses:
+        "201":
+          description: Created order item ID
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: integer
+
+  /order-items/{id}:
+    get:
+      summary: Get order item by ID
+      tags: [OrderItems]
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema: { type: integer }
+      responses:
+        "200":
+          description: Order item found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OrderItem'
+        "404":
+          description: Order item not found
+    put:
+      summary: Update order item by ID
+      tags: [OrderItems]
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema: { type: integer }
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/OrderItemInput'
+      responses:
+        "200":
+          description: Order item updated
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  updated:
+                    type: boolean
+    delete:
+      summary: Delete order item by ID
+      tags: [OrderItems]
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema: { type: integer }
+      responses:
+        "200":
+          description: Order item deleted
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  deleted:
+                    type: boolean
+
+components:
+  schemas:
+    User:
+      type: object
+      properties:
+        id: { type: integer }
+        full_name: { type: string }
+        email: { type: string, format: email }
+        password_hash: { type: string }
+        role:
+          type: string
+          enum: [admin, organizer, customer]
+        is_active: { type: integer }
+        created_at: { type: string, format: date-time }
+
+    UserInput:
+      type: object
+      required: [full_name, email, password_hash, role]
+      properties:
+        full_name: { type: string }
+        email: { type: string, format: email }
+        password_hash: { type: string }
+        role:
+          type: string
+          enum: [admin, organizer, customer]
+        is_active: { type: integer }
+
+    Venue:
+      type: object
+      properties:
+        id: { type: integer }
+        name: { type: string }
+        city: { type: string }
+        capacity: { type: integer }
+        address: { type: string }
+        details: { type: string }
+        created_at: { type: string, format: date-time }
+
+    VenueInput:
+      type: object
+      required: [name, city, capacity]
+      properties:
+        name: { type: string }
+        city: { type: string }
+        capacity: { type: integer }
+        address: { type: string }
+        details: { type: string }
+
+    Event:
+      type: object
+      properties:
+        id: { type: integer }
+        organizer_id: { type: integer }
+        venue_id: { type: integer }
+        title: { type: string }
+        category: { type: string }
+        description: { type: string }
+        starts_at: { type: string, format: date-time }
+        ends_at: { type: string, format: date-time }
+        status:
+          type: string
+          enum: [draft, published, cancelled]
+        created_at: { type: string, format: date-time }
+
+    EventInput:
+      type: object
+      required: [organizer_id, venue_id, title, starts_at, ends_at, status]
+      properties:
+        organizer_id: { type: integer }
+        venue_id: { type: integer }
+        title: { type: string }
+        category: { type: string }
+        description: { type: string }
+        starts_at: { type: string, format: date-time }
+        ends_at: { type: string, format: date-time }
+        status:
+          type: string
+          enum: [draft, published, cancelled]
+
+    TicketType:
+      type: object
+      properties:
+        id: { type: integer }
+        event_id: { type: integer }
+        name: { type: string }
+        price: { type: number, format: float }
+        quantity_available: { type: integer }
+        created_at: { type: string, format: date-time }
+
+    TicketTypeInput:
+      type: object
+      required: [event_id, name, price, quantity_available]
+      properties:
+        event_id: { type: integer }
+        name: { type: string }
+        price: { type: number, format: float }
+        quantity_available: { type: integer }
+
+    Order:
+      type: object
+      properties:
+        id: { type: integer }
+        user_id: { type: integer }
+        total: { type: number, format: float }
+        created_at: { type: string, format: date-time }
+
+    OrderInput:
+      type: object
+      required: [user_id, total]
+      properties:
+        user_id: { type: integer }
+        total: { type: number, format: float }
+
+    OrderItem:
+      type: object
+      properties:
+        id: { type: integer }
+        order_id: { type: integer }
+        ticket_type_id: { type: integer }
+        quantity: { type: integer }
+        price_each: { type: number, format: float }
+
+    OrderItemInput:
+      type: object
+      required: [order_id, ticket_type_id, quantity, price_each]
+      properties:
+        order_id: { type: integer }
+        ticket_type_id: { type: integer }
+        quantity: { type: integer }
+        price_each: { type: number, format: float }
