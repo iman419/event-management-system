@@ -83,3 +83,33 @@ frontend/
 ├── css/
 └── views/
 
+
+
+This Milestone implements full backend functionality for the Event Management System using a custom lightweight PHP framework located in backend/lib/.
+
+Implemented features:
+
+Full CRUD for: Users, Events, Venues, Ticket Types, Orders, Order Items
+
+Service–DAO architecture (clean separation of logic and database access)
+
+Custom routing system with Flight-like core (lib/flight.php)
+
+Input validation, error handling, and JSON responses
+
+Database stored in database/ems.sql
+
+API documentation included in backend/public/docs/
+
+Project structure:
+
+routes/ – endpoint definitions
+
+services/ – business logic
+
+dao/ – data access
+
+lib/ – ramework
+
+public/ – API entry point
+
