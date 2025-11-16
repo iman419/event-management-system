@@ -26,3 +26,9 @@ class Database {
     return self::$connection;
   }
 }
+
+
+function json_response($data, int $statusCode = 200): void {
+  Flight::json($data, $statusCode);
+}
+
